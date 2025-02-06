@@ -1,0 +1,48 @@
+[
+    {
+        "id" : 1,
+        "name" : "Barberton Daisy",
+        "price" : "$119.00"
+    },
+    {
+        "id" : 2,
+        "name" : "Angel Wing Begonia",
+        "price" : "$169.00"
+    },
+    {
+        "id" : 3,
+        "name" : "African Violet",
+        "price" : "$199.00"
+    },
+    {
+        "id" : 4,
+        "name" : "Beach Spider Lily",
+        "price" : "$129.00"
+    },
+    {
+        "id" : 5,
+        "name" : "Blushing Bromeliad",
+        "price" : "$139.00"
+    },
+    {
+        "id" : 6,
+        "name" : "Aluminum Plant",
+        "price" : "$179.00"
+    },
+    {
+        "id" : 7,
+        "name" : "Barberton Daisy",
+        "price" : "$119.00"
+    },
+    {
+        "id" : 8,
+        "name" : "Angel Wing Begonia",
+        "price" : "$169.00"
+    },
+    {
+        "id" : 9,
+        "name" : "African Violet",
+        "price" : "$199.00"
+    }
+
+]
