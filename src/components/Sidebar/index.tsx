@@ -1,7 +1,7 @@
 import GreenButton from "../GreenButton";
 import Banner from "../../assets/Super Sale Banner.svg"
 
-const Sidebar = ({size}: {size: string}) => {
+const Sidebar = () => {
     return (
       <div className="w-[350px] mt-5 p-4 bg-[#FBFBFB]">
         <div className="mb-6 flex flex-col items-start gap-[10px]">

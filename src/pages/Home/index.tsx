@@ -20,7 +20,7 @@ const Home = () => {
   const [size, setSize] = useState("");
   const [price, setPrice] = useState(4000);
   const [category, setCategory] = useState("");
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const [loading, setLoading] = useState(false);
 
   async function fetchApi() {
