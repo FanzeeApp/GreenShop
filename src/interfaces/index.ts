@@ -36,9 +36,28 @@ export interface CartItem {
     name: string;
     price: number;
     quantity: number;
+    pictures: string
   }
   
 export interface CartState {
     items: CartItem[];
     totalQuantity: number;
   }
+
+export interface Order {
+    items: Array<{
+      productId: string;
+      quantity: number;
+    }>;
+    firstName: string;
+    lastName: string;
+    country: string;
+    city: string;
+    apartment: string;
+    state: string;
+    zip: string;
+    email: string;
+    phoneNumber: string;
+    notes: string;
+  }
+  

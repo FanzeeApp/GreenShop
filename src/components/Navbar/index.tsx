@@ -82,7 +82,7 @@ const Navbar = () => {
           <div className="relative" onClick={handleCartClick}>
             <BsCart3 className="xl:text-gray-700 text-2xl w-[24px] h-[24px]" />
             {totalQuantity > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1">
+              <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full px-1">
                 {totalQuantity}
               </span>
             )}

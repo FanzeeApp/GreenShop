@@ -20,7 +20,8 @@ const Home = () => {
   const [size, setSize] = useState("");
   const [price, setPrice] = useState(4000);
   const [category, setCategory] = useState("");
-  const [page] = useState(1);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
 
   async function fetchApi() {
@@ -40,6 +41,8 @@ const Home = () => {
         }
       );
       setProducts(response.data.products);
+      setTotalPages(Math.ceil(response.data.count / 9));
+
     } catch (error) {
       console.error("API dan ma'lumot olishda xatolik:", error);
     } finally {
@@ -112,11 +115,11 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="qism-two">
+          <div className="qism-two pt-[40px]">
             {loading ? (
               <p className="text-center text-green-600 font-semibold">Yuklanmoqda...</p>
             ) : (
-              <div className="products grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 xl:pb-[60px]">
+              <div className="products grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {products.length > 0 ? (
                   products.map((item) => (
                     <Card key={item._id} _id={item._id} name={item.name} imgUrl={item.pictures} price={item.price} />
@@ -125,9 +128,22 @@ const Home = () => {
                   <p className="text-center text-gray-600">Mahsulot topilmadi</p>
                 )}
               </div>
+              
             )}
+            
           </div>
         </section>
+        <div className="flex justify-end items-end gap-2 container">
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => setPage(index + 1)}
+                className={`px-4 py-2 rounded ${page === index + 1 ? "bg-green-600 text-white" : "bg-gray-200"}`}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
         <section className="container flex items-center justify-between pt-28">
                   <div className="1-product bg-[#FBFBFB]">
                       <div className="w-[586px] h-[250px] flex items-center p-4">
