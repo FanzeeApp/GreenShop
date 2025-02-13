@@ -18,7 +18,7 @@ export interface Product {
     description: string,
     price?: number,
     discount?: number
-    category?: string,
+    category: string,
     size?: number
     pictures: string
 }

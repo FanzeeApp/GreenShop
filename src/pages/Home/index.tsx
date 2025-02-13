@@ -3,7 +3,6 @@ import { Product } from "../../interfaces";
 import { useEffect, useState } from "react";
 import Banner from "../../assets/Super Sale Banner.svg";
 import HeroSection from "../../components/Swiper";
-import axios from "axios";
 import Card from "../../components/Card";
 import image14 from "../../assets/image 14.svg";
 import image15 from "../../assets/image 15.svg";
@@ -14,9 +13,11 @@ import img3 from "../../assets/minicard/03.svg";
 import img4 from "../../assets/minicard/04.svg";
 import Footer from "../../components/Footer";
 import GreenButton from "../../components/GreenButton";
+import apiClient from "../../api/apiClient";
 
 const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [categoryCount, setCategoryCount] = useState<{ [key: string]: number }>({});
   const [size, setSize] = useState("");
   const [price, setPrice] = useState(4000);
   const [category, setCategory] = useState("");
@@ -27,8 +28,8 @@ const Home = () => {
   async function fetchApi() {
     setLoading(true);
     try {
-      const response = await axios.get(
-        `https://www.e-commerce-api-v3.nt.azimumarov.uz/api/v1/products`, 
+      const response = await apiClient.get(
+        "/products",
         {
           params: {
             page,
@@ -42,6 +43,12 @@ const Home = () => {
       );
       setProducts(response.data.products);
       setTotalPages(Math.ceil(response.data.count / 9));
+
+      const categoryData: { [key: string]: number } = {};
+      response.data.products.forEach((product: Product) => {
+        categoryData[product.category] = (categoryData[product.category] || 0) + 1;
+      });
+      setCategoryCount(categoryData);
 
     } catch (error) {
       console.error("API dan ma'lumot olishda xatolik:", error);
@@ -65,7 +72,7 @@ const Home = () => {
           <div className="qism-one">
             <div className="w-[350px] mt-5 p-4 bg-[#FBFBFB]">
               <div className="mb-6 flex flex-col items-start gap-[10px]">
-                <h2 className="text-lg font-semibold mb-3">Categories</h2>
+              <h2 className="text-lg font-semibold mb-3">Categories ({products.length})</h2>
                 <ul className="space-y-2 text-gray-700 pl-5 flex flex-col gap-1 w-[310px]">
                   {["House Plants", "Potter Plants", "Seeds", "Small Plants", "Big Plants", "Succulents", "Terrariums", "Gardening", "Hammasi"].map((name) => (
                     <li
@@ -73,7 +80,7 @@ const Home = () => {
                       onClick={() => setCategory(name)}
                       className={`flex justify-between cursor-pointer ${category === name ? "text-green-600 font-bold" : "hover:text-green-600"}`}
                     >
-                      {name}
+                      {name} ({categoryCount[name] || 0})
                     </li>
                   ))}
                 </ul>
